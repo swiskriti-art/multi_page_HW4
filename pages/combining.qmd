@@ -6,4 +6,55 @@ editor_options:
   chunk_output_type: inline
 ---
 
-Answers go here!
+```{r}
+library (readxl)
+library(tidyverse)
+```
+Read excel file for white wine data
+```{r}
+whitewine_tbl <- read_excel("../white-wine.xlsx",
+                             sheet = excel_sheets("../white-wine.xlsx")[1]
+ )
+whitewine_tbl
+```
+Reading variable names and renaming variables
+```{r}
+whitewine_name <- read_excel("../white-wine.xlsx",
+                            #col_names = FALSE,
+                              sheet = excel_sheets("../white-wine.xlsx")[2]
+)
+colnames(whitewine_tbl) <- whitewine_name[[1]]
+
+```
+Adding wine type column
+```{r}
+whitewine_tbl |>
+  mutate(type = "white")
+```
+reading red wine data
+```{r}
+red_wine_tbl <- read_delim("https://www4.stat.ncsu.edu/~online/datasets/red-wine.csv",
+                             delim = ";"
+)
+colnames(red_wine_tbl) <- whitewine_name[[1]]
+
+red_wine_tbl |>
+mutate(type = "red")
+```
+Combining two wine data sets in one data set
+```{r}
+wine_tbl <- bind_rows(whitewine_tbl, red_wine_tbl)
+```
+Calculating mean and standard deviation of alcohol variable for each quality variable
+```{r}
+wine_tbl |>
+  filter(quality > 6.5 & alcohol < 132 ) |>
+  arrange(desc(quality)) |>
+  group_by(quality) |>
+  select(contains("acid"), alcohol, type, quality)|>
+  mutate (mean_alcohol = mean(alcohol), sd_alcohol= sd(alcohol))
+```
+
+
+
+                              

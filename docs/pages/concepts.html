@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2025-08-27">
+<meta name="dcterms.date" content="2025-09-17">
 
 <title>Conceptual Questions – Homework 4 Site</title>
 <style>
@@ -38,10 +38,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0e514215ed9697c63822a2132a5c5b97.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -179,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025-08-27</p>
+      <p class="date">2025-09-17</p>
     </div>
   </div>
   
@@ -191,7 +191,35 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Answers go here!</p>
+<ol type="1">
+<li>If your working directory is myfolder/homework/, what relative path would you specify to get the file located at myfolder/MyData.csv?</li>
+</ol>
+<blockquote class="blockquote">
+<p>../MyData.csv</p>
+</blockquote>
+<ol start="2" type="1">
+<li>What are the major benefits of using R projects?</li>
+</ol>
+<blockquote class="blockquote">
+<p>R projects organizes everything like settings, packages, environment so that we can easily share the project between multiple Operating Systems</p>
+</blockquote>
+<ol start="3" type="1">
+<li>What is git and what is github?</li>
+</ol>
+<blockquote class="blockquote">
+<p>Git is a version control system that allows taking snapshots of files/projects and github is an online platform to store and mange such files/projects using git.</p>
+</blockquote>
+<ol start="4" type="1">
+<li>What are the two main differences between a tibble and a data.frame?</li>
+</ol>
+<blockquote class="blockquote">
+<p>Data frame is a data structure in base R which store 2 dimensional data or tabular data.Tibble is a data structure in tidyverse package which internally uses data frame. Data frame always prints the whole table by default but tibble provides meaningful information of the table and print only 10 rows.</p>
+</blockquote>
+<p>5.Rewrite the following nested function call using BaseR’s chaining operator:</p>
+<p>arrange(filter(select(as_tibble(iris), starts_with(“Petal”), Species), Petal.Length &lt; 1.55), Species)</p>
+<blockquote class="blockquote">
+<p>as_tibble(iris) |&gt; select (starts_with (“Petal”), Species) filter(petal.length &lt; 1.55) |&gt; arrange (Species)</p>
+</blockquote>
 
 
 
@@ -278,8 +306,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -390,7 +416,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

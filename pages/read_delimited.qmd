@@ -6,5 +6,51 @@ editor_options:
   chunk_output_type: inline
 ---
 
+Loading library tidyverse
+```{r}
+library(tidyverse)
+```
+Reading glass data
+```{r}
+glass_tbl <- read_csv("https://www4.stat.ncsu.edu/online/datasets/glass.data",
+                      col_names = c("Id","RI","Na","Mg","Al","Si","K","Ca","Ba","Fe", "Type_of_glass")
+)
+glass_tbl
+```
+```{r}
+glass_tbl |>
+  mutate(Type_of_glass = ifelse (Type_of_glass==1, "building_windows_float_processed",
+                       ifelse (Type_of_glass==2, "building_windows_non_float_processed",
+                       ifelse (Type_of_glass==3, "vehicle_windows_float_processed",
+                       ifelse (Type_of_glass==4, "vehicle_windows_non_float_processed",
+                       ifelse (Type_of_glass==5, "containers",
+                       ifelse (Type_of_glass==6, "tableware",
+                       ifelse (Type_of_glass==7, "headlamps",
+                                                 "error")))))))
+       ) |>
+  filter(Fe < 0.2 & Type_of_glass %in% c("tableware","headlamps"))
 
-Answers go here!
+```
+Yeast data
+
+Reading Yeast.data
+```{r}
+yeast_tbl <- read_table("https://www4.stat.ncsu.edu/online/datasets/yeast.data",
+                        col_names = c("seq_name","mcg","gvh","alm","mit",
+                                      "erl","pox","vac","nuc","class")
+)
+yeast_tbl
+```
+Removing columns seq_name and nuc and calculating mean and median grouping by class
+```{r}
+yeast_tbl |>
+  select(-seq_name, -nuc) |>
+  arrange(class) |>
+  mutate (across(where(is.numeric), list(mean = mean, median = median),
+                 .names = "{.col}_{.fn}")) |>
+  group_by(class) |>
+  view()
+```
+
+
+

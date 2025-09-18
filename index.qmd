@@ -6,6 +6,6 @@ editor_options:
   chunk_output_type: inline
 ---
 
-An example pages site with multiple pages and a table of contents.
+Multilple pages for reading data from files and combining data 
 
-This could be a landing page for the site. Feel free to put whatever here!
+
